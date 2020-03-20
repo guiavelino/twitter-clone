@@ -2,6 +2,7 @@
 
 namespace App\Models;
 use MF\Model\Model;
+use PDO;
 
 class Usuario extends Model{
 
@@ -50,6 +51,23 @@ class Usuario extends Model{
             return false;
         }
         return true;
+    }
+
+    public function autenticar(){
+        $query = "SELECT * FROM usuarios where email = :e AND senha = :s";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindValue(":e", $this->email);
+        $stmt->bindValue(":s", $this->senha);
+        $stmt->execute();
+
+        $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+        if(!empty($usuario['id'])){
+            $this->id = $usuario['id'];
+            $this->nome = $usuario['nome'];
+            $this->email = $usuario['email'];
+            $this->senha = $usuario['senha'];
+        }
     }
 
 }

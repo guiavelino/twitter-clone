@@ -35,16 +35,13 @@
                 </small>
               </div>
               <button type="submit" class="btn btn-primary btn-block">Inscrever-se</button>
-              <?php 	
               
-                  if($this->view->erroCadastro){ ?>
-
+              <?php if(empty($this->view->erroCadastroDados)){ ?>
+              <?php } else if($this->view->erroCadastroDados == 1){ ?>
                     <small class="form-text text-danger">Erro ao tentar realizar o cadastro, verifique se os campos foram preenchidos corretamente.</small>
-
-              <?php
-                  }
-              
-              ?>
+              <?php }else if($this->view->erroCadastroDados == 2){ ?>
+                    <small class="form-text text-danger">Este e-mail ja está sendo utilizado, cadastre outro e-mail.</small>
+              <?php } ?>
             </form>
 
           </div>
