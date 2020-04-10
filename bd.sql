@@ -1,4 +1,5 @@
-create database twitter_clone;
+drop database if EXISTS twitter_clone;
+create database if not exists twitter_clone;
 
 use twitter_clone;
 
